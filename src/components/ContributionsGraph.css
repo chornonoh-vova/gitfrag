@@ -1,0 +1,7 @@
+.contributions-graph-wrapper {
+  border-radius: 6px;
+  border: 1px solid #d1d9e0;
+  padding: 8px;
+  overflow: scroll;
+  max-height: 300px;
+}
