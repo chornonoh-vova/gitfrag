@@ -1,7 +1,7 @@
 #root {
   max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 32px;
 }
 
 .main {
@@ -25,4 +25,17 @@
   flex-direction: row;
   align-items: end;
   gap: 8px;
+}
+
+@media screen and (width <=768px) {
+  #root {
+    padding: 16px;
+  }
+}
+
+@media screen and (width <=425px) {
+  #root {
+    padding-inline: 8px;
+    padding-block: 0 8px;
+  }
 }

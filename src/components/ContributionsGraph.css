@@ -2,8 +2,13 @@
   border-radius: 6px;
   border: 1px solid #d1d9e0;
   padding: 12px 8px;
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 300px;
+}
+
+.contributions-graph {
+  margin: 0 auto;
+  width: fit-content;
   display: grid;
   gap: 3px;
   grid-template-rows: repeat(8, 12px);
@@ -25,6 +30,8 @@
   display: grid;
   grid-template-rows: subgrid;
   grid-row: 2 / -1;
+  text-align: end;
+  padding-inline-end: 7px;
 }
 
 .contributions-grid {

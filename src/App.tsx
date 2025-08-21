@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type ChangeEvent } from "react";
 
 import { UsernameInput } from "./components/UsernameInput";
 
@@ -8,12 +8,24 @@ import { ContributionsGraph } from "./components/ContributionsGraph";
 import { useContributions } from "./lib/github";
 import { ContributionsLoading } from "./components/ContributionsLoading";
 import type { ContributionCalendarDay } from "./lib/types";
-import { bubbleSort } from "./lib/sort";
+import {
+  bubbleSort,
+  contributionCalendarDayCompare,
+  countingSort,
+  mergeSort,
+  quickSort,
+} from "./lib/sort";
+import { AlgorithmExplainer } from "./components/AlgorithmExplainer";
 
 function App() {
   const [username, setUsername] = useState("chornonoh-vova");
   const [algorithm, setAlgorithm] = useState("bubble");
   const [sorted, setSorted] = useState(false);
+
+  const [solutionIdx, setSolutionIdx] = useState(-1);
+  const [solutionSteps, setSolutionSteps] = useState<
+    [number, ContributionCalendarDay][]
+  >([]);
 
   const [contributionDays, setContributionDays] = useState<
     ContributionCalendarDay[]
@@ -21,7 +33,7 @@ function App() {
 
   const { data: contributions, isLoading } = useContributions(username);
 
-  const transformContributions = () => {
+  const initialContributions = () => {
     if (!contributions) {
       return [];
     }
@@ -42,31 +54,112 @@ function App() {
     return days;
   };
 
-  useEffect(() => {
-    setContributionDays(transformContributions());
+  const onUsernameChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  }, []);
+
+  const onAlgorithmChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    setAlgorithm(e.target.value);
+  }, []);
+
+  const resetSolution = () => {
+    setSolutionIdx(-1);
+    setSolutionSteps([]);
+  };
+
+  const reset = () => {
+    setContributionDays(initialContributions());
     setSorted(false);
+    resetSolution();
+  };
+
+  useEffect(() => {
+    reset();
   }, [contributions]);
 
+  useEffect(() => {
+    let requestId: number;
+
+    const step = () => {
+      if (solutionIdx === -1) {
+        return;
+      }
+
+      const [index, contributionDay] = solutionSteps[solutionIdx];
+
+      const copiedContributionDays = structuredClone(contributionDays);
+      copiedContributionDays[index] = contributionDay;
+      setContributionDays(copiedContributionDays);
+
+      if (solutionIdx === solutionSteps.length - 1) {
+        resetSolution();
+        setSorted(true);
+      } else {
+        setSolutionIdx(solutionIdx + 1);
+        requestId = requestAnimationFrame(step);
+      }
+    };
+
+    requestId = requestAnimationFrame(step);
+
+    return () => {
+      cancelAnimationFrame(requestId);
+    };
+  }, [contributionDays, solutionSteps, solutionIdx]);
+
   const onResetClick = () => {
-    setContributionDays(transformContributions());
-    setSorted(false);
+    reset();
   };
 
   const onSortClick = () => {
+    let sorted: ContributionCalendarDay[];
+    const recording: [number, ContributionCalendarDay][] = [];
+    const recordingCallback = (
+      index: number,
+      element: ContributionCalendarDay,
+    ) => {
+      recording.push([index, element]);
+    };
+
     switch (algorithm) {
       case "bubble": {
-        setContributionDays(
-          bubbleSort(
-            contributionDays,
-            (a, b) => a.contributionCount - b.contributionCount,
-          ),
+        sorted = bubbleSort(
+          contributionDays,
+          contributionCalendarDayCompare,
+          recordingCallback,
         );
-        setSorted(true);
+        break;
+      }
+      case "merge": {
+        sorted = mergeSort(
+          contributionDays,
+          contributionCalendarDayCompare,
+          recordingCallback,
+        );
+        break;
+      }
+      case "quick": {
+        sorted = quickSort(
+          contributionDays,
+          contributionCalendarDayCompare,
+          recordingCallback,
+        );
+        break;
+      }
+      case "counting": {
+        sorted = countingSort(
+          contributionDays,
+          (e) => e.contributionCount,
+          recordingCallback,
+        );
         break;
       }
       default:
         throw new Error("Unknown algorithm");
     }
+
+    setSolutionIdx(0);
+    setSolutionSteps(recording);
   };
 
   return (
@@ -83,7 +176,7 @@ function App() {
           type="text"
           autoComplete="username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={onUsernameChange}
         />
 
         <div className="actions-group">
@@ -91,7 +184,7 @@ function App() {
             label="Algorithm"
             name="algorithm"
             value={algorithm}
-            onChange={(e) => setAlgorithm(e.target.value)}
+            onChange={onAlgorithmChange}
           />
           {sorted && (
             <button className="btn" onClick={onResetClick}>
@@ -117,8 +210,11 @@ function App() {
               .contributionCalendar.weeks.length ?? 0
           }
           contributionDays={contributionDays}
+          highlight={solutionSteps[solutionIdx]?.[0]}
         />
       )}
+
+      <AlgorithmExplainer algorithm={algorithm} />
     </main>
   );
 }

@@ -15,10 +15,10 @@ export function AlgorithmSelect({
     <div className="form-group">
       <label htmlFor={selectId}>{label}</label>
       <select className="form-select" id={selectId} {...rest}>
-        <option value="bubble">Slow (legacy)</option>
-        <option value="merge">Efficient</option>
-        <option value="quick">Enterprise</option>
-        <option value="radix">Turbo</option>
+        <option value="bubble">Slow 🐢</option>
+        <option value="merge">Steady ⚖️</option>
+        <option value="quick">Flash ⚡️</option>
+        <option value="counting">Turbo 🚀</option>
       </select>
     </div>
   );
