@@ -1,0 +1,45 @@
+.controls {
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 32px;
+}
+
+.username-wrapper {
+  display: flex;
+  flex: 1;
+  justify-content: start;
+  align-items: end;
+}
+
+.actions-group {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: end;
+  align-items: end;
+  gap: 8px;
+}
+
+@media screen and (width <=480px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  .username-wrapper {
+    width: 100%;
+  }
+
+  .username-wrapper>* {
+    flex: 1;
+    max-width: 300px;
+  }
+
+  .actions-group {
+    width: 100%;
+    justify-content: start;
+  }
+}

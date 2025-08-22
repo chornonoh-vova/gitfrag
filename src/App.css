@@ -1,41 +1,9 @@
-#root {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 32px;
-}
-
 .main {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
 }
 
-.controls {
-  display: flex;
-  gap: 1rem;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-block-end: 32px;
-}
-
-.actions-group {
-  display: flex;
-  flex-direction: row;
-  align-items: end;
-  gap: 8px;
-}
-
-@media screen and (width <=768px) {
-  #root {
-    padding: 16px;
-  }
-}
-
-@media screen and (width <=425px) {
-  #root {
-    padding-inline: 8px;
-    padding-block: 0 8px;
-  }
+.subtitle {
+  margin-block: 0 32px;
 }

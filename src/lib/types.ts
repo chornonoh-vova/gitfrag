@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+export const UserSchema = z.object({
+  authenticated: z.boolean(),
+  username: z.string().optional(),
+});
+
+export type User = z.infer<typeof UserSchema>;
+
 const ContributionCalendarMonthSchema = z.object({
   name: z.string(),
   totalWeeks: z.number(),
