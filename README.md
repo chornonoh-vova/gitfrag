@@ -1,69 +1,12 @@
-# React + TypeScript + Vite
+# GitFrag
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a little fun app that allows users to perform defragmentation (essentially sorting) of their GitHub profile contributions. It includes multiple sorting algorithms, so that users can observe their differences in efficiency. Additionally, every algorithm has a little explainer that showcases algorithm characteristics.
+I build it as a challenge for my blog, and described my journey: https://www.chornonoh-vova.com/blog/gitfrag-challenge
 
-Currently, two official plugins are available:
+Just navigate to https://gitfrag.vercel.app, sign in with your GitHub account, and try out different algorithms for defragmenting (sorting) your profile contributions!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="952" height="441" alt="image" src="https://github.com/user-attachments/assets/24455385-5278-4b49-8026-495fbf2a4303" />
 
-## Expanding the ESLint configuration
+<img width="953" height="441" alt="image" src="https://github.com/user-attachments/assets/623129bf-37e1-442a-bed2-289abf745041" />
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+And, additionaly, read about how all of those algorithms work!
