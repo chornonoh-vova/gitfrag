@@ -1,9 +1,9 @@
 import { Spinner } from "./Spinner";
-import "./ContributionsLoading.css";
+import classes from "./ContributionsLoading.module.css";
 
 export function ContributionsLoading() {
   return (
-    <div className="contributions-loading-wrapper">
+    <div className={classes.contributionsLoading}>
       <Spinner />
     </div>
   );

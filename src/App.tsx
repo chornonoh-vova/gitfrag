@@ -1,6 +1,6 @@
 import { ContributionsDefragmentation } from "./components/ContributionsDefragmentation";
 
-import "./App.css";
+import classes from "./App.module.css";
 import { logout, useUser } from "./lib/api";
 import { useQueryClient } from "@tanstack/react-query";
 import { Spinner } from "./components/Spinner";
@@ -37,17 +37,26 @@ function App() {
   };
 
   return (
-    <main className="main">
+    <main className={classes.main}>
       <h1>
+        <img
+          className={classes.logo}
+          role="presentation"
+          src="/logo.svg"
+          width="36"
+          height="36"
+        />
         GitFrag
         {data?.authenticated && (
-          <button style={{ float: "right" }} onClick={onLogoutClick}>
+          <button className={classes.logout} onClick={onLogoutClick}>
             Logout
           </button>
         )}
       </h1>
 
-      <p className="subtitle">Organize your commits, the old-school way</p>
+      <p className={classes.subtitle}>
+        Organize your commits, the old-school way
+      </p>
 
       {isLoading ? (
         <Spinner />

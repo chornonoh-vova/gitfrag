@@ -1,0 +1,114 @@
+.contributions-graph-wrapper {
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  padding: 12px 8px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.contributions-graph-scroll {
+  overflow-y: scroll;
+  padding-block-end: 12px;
+}
+
+.contributions-graph {
+  margin: 0 auto;
+  width: fit-content;
+  display: grid;
+  gap: 3px;
+  grid-template-rows: repeat(8, 12px);
+}
+
+.contributions-months {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 400;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 2 / -1;
+}
+
+.contributions-days-of-week {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 400;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: 2 / -1;
+  text-align: end;
+  padding-inline-end: 7px;
+}
+
+.contributions-grid {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+  grid-row: 2 / -1;
+  grid-column: 2 / -1;
+}
+
+.contribution {
+  border-radius: 2px;
+}
+
+.contribution[data-highlight="true"] {
+  outline: 2px solid #0969da;
+}
+
+.contribution[data-level="0"] {
+  background-color: #eff2f5;
+}
+
+.contribution[data-level="1"] {
+  background-color: #aceebb;
+}
+
+.contribution[data-level="2"] {
+  background-color: #4ac26b;
+}
+
+.contribution[data-level="3"] {
+  background-color: #2da44e;
+}
+
+.contribution[data-level="4"] {
+  background-color: #116329;
+}
+
+@media (prefers-color-scheme: dark) {
+  .contribution[data-level="0"] {
+    background-color: #151b23;
+  }
+
+  .contribution[data-level="1"] {
+    background-color: #033a16;
+  }
+
+  .contribution[data-level="2"] {
+    background-color: #196c2e;
+  }
+
+  .contribution[data-level="3"] {
+    background-color: #2ea043;
+  }
+
+  .contribution[data-level="4"] {
+    background-color: #56d364;
+  }
+}
+
+.color-codes-wrapper {
+  max-width: 825px;
+  margin: 0 auto;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 400;
+}
+
+.color-codes {
+  float: right;
+  display: grid;
+  gap: 3px;
+  height: 12px;
+  grid-template-columns: 30px repeat(5, 12px) 30px;
+}

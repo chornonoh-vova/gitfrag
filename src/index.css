@@ -4,13 +4,59 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #1f2328;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --border-color-light: #d1d9e0;
+  --border-color-dark: #3d444d;
+  --border-color: var(--border-color-light);
+
+  --button-color-light: #25292e;
+  --button-color-dark: #f0f6fc;
+  --button-color: var(--button-color-light);
+
+  --button-background-color-light: #f6f8fa;
+  --button-background-color-dark: #212830;
+  --button-background-color: var(--button-background-color-light);
+
+  --button-background-hover-light: #eff2f5;
+  --button-background-hover-dark: #262c36;
+  --button-background-hover: var(--button-background-hover-light);
+
+  --button-box-shadow-light: 0px 1px 0px 0px #1f23280a;
+  --button-box-shadow-dark: 0px 0px 0px 0px #000000;
+  --button-box-shadow: var(--button-box-shadow-light);
+
+  --form-background-color-light: #f6f8fa;
+  --form-background-color-dark: #151b23;
+  --form-background-color: var(--form-background-color-light);
+
+  --form-background-focus-light: #ffffff;
+  --form-background-focus-dark: #0d1117;
+  --form-background-focus: var(--form-background-focus-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f0f6fc;
+    background-color: #0d1117;
+    --border-color: var(--border-color-dark);
+    --button-color: var(--button-color-dark);
+    --button-background-color: var(--button-background-color-dark);
+    --button-background-hover: var(--button-background-hover-dark);
+    --button-box-shadow: var(--button-box-shadow-dark);
+    --form-background-color: var(--form-background-color-dark);
+    --form-background-focus: var(--form-background-focus-dark);
+  }
+
+  code {
+    background-color: #656c7633;
+  }
 }
 
 body {
@@ -21,7 +67,7 @@ body {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 36px;
   line-height: 1.1;
 }
 
@@ -33,13 +79,6 @@ code {
   padding: 2px 4px;
   background-color: #818b981f;
   border-radius: 6px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
 }
 
 #root {
@@ -72,11 +111,11 @@ code {
 }
 
 .form-group .form-control {
-  background-color: #f6f8fa;
+  background-color: var(--form-background-color);
 }
 
 .form-group .form-select {
-  background-color: #f6f8fa;
+  background-color: var(--form-background-color);
   min-height: 32px;
 }
 
@@ -86,9 +125,9 @@ code {
   padding: 5px 12px;
   font-size: 14px;
   line-height: 20px;
-  color: #1f2328;
+  color: var(--button-color);
   vertical-align: middle;
-  border: 1px solid #d1d9e0;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   box-shadow: inset 0px 1px 0px 0px #1f23280a;
   transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
@@ -104,7 +143,7 @@ code {
 }
 
 .form-group .form-control:focus {
-  background-color: #ffffff;
+  background-color: var(--form-background-focus);
 }
 
 .form-control:focus,
@@ -123,9 +162,9 @@ code {
 
 button,
 .btn {
-  color: #25292e;
-  background-color: #f6f8fa;
-  box-shadow: 0px 1px 0px 0px #1f23280a;
+  color: var(--button-color);
+  background-color: var(--button-background-color);
+  box-shadow: var(--button-box-shadow);
   transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
   transition-property: color, background-color, box-shadow, border-color;
   padding: 5px 16px;
@@ -136,14 +175,14 @@ button,
   vertical-align: middle;
   cursor: pointer;
   user-select: none;
-  border: 1px solid #d1d9e0;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   appearance: none;
 }
 
 button:hover,
 .btn:hover {
-  background-color: #eff2f5;
+  background-color: var(--button-background-hover);
 }
 
 .btn-primary {
@@ -156,4 +195,15 @@ button:hover,
 .btn-primary:hover {
   background-color: #1c8139;
   border-color: #1f232826;
+}
+
+.hidden {
+  &:not(:focus):not(:active):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
 }

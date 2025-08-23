@@ -15,7 +15,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
-    "types": ["@vercel/node"]
   }
 }

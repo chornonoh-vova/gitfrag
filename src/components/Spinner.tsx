@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-import "./Spinner.css";
+import classes from "./Spinner.module.css";
 
 export function Spinner() {
   const id = useId();
@@ -13,7 +13,7 @@ export function Spinner() {
         fill="none"
         aria-hidden="true"
         aria-labelledby={id}
-        className="spinner"
+        className={classes.spinner}
       >
         <circle
           cx="8"

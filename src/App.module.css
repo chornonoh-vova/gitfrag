@@ -7,3 +7,12 @@
 .subtitle {
   margin-block: 0 32px;
 }
+
+.logo {
+  float: left;
+  margin-right: 4px;
+}
+
+.logout {
+  float: right;
+}

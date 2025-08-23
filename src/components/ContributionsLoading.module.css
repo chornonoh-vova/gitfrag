@@ -1,0 +1,7 @@
+.contributions-loading {
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  height: 165px;
+}

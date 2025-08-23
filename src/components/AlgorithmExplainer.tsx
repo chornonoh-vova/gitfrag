@@ -1,13 +1,13 @@
 import { memo, type ComponentPropsWithRef } from "react";
 
-import "./AlgorithmExplainer.css";
+import classes from "./AlgorithmExplainer.module.css";
 
 function ExplainerWrapper({
   children,
   ...rest
 }: ComponentPropsWithRef<"article">) {
   return (
-    <article className="explainer-wrapper" {...rest}>
+    <article className={classes.explainerWrapper} {...rest}>
       {children}
     </article>
   );

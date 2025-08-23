@@ -15,7 +15,7 @@ import { ContributionsLoading } from "./ContributionsLoading";
 import { ContributionsGraph } from "./ContributionsGraph";
 import { AlgorithmExplainer } from "./AlgorithmExplainer";
 
-import "./ContributionsDefragmentation.css";
+import classes from "./ContributionsDefragmentation.module.css";
 
 type PlaybackState = "initial" | "playing" | "paused" | "completed";
 
@@ -197,8 +197,8 @@ export function ContributionsDefragmentation({
 
   return (
     <>
-      <section className="controls">
-        <div className="username-wrapper">
+      <section className={classes.controls}>
+        <div className={classes.usernameWrapper}>
           <UsernameInput
             label="Username"
             name="username"
@@ -209,7 +209,7 @@ export function ContributionsDefragmentation({
           />
         </div>
 
-        <div className="actions-group">
+        <div className={classes.actionsGroup}>
           <AlgorithmSelect
             label="Algorithm"
             name="algorithm"

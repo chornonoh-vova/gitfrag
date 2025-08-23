@@ -39,7 +39,10 @@ function contributionsOptions(username: string) {
 }
 
 async function fetchContributions(username: string): Promise<Contributions> {
-  const response = await fetch(`/api/contributions?username=${username}`, {
+  const searchParams = new URLSearchParams();
+  searchParams.set("username", username);
+
+  const response = await fetch(`/api/contributions?${searchParams}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

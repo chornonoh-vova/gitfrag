@@ -17,7 +17,7 @@ export type ContributionCalendarMonth = z.infer<
 >;
 
 const ContributionCalendarDaySchema = z.object({
-  color: z.string(),
+  contributionLevel: z.string(),
   contributionCount: z.number(),
   date: z.iso.date(),
 });
